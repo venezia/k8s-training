@@ -1,0 +1,55 @@
+{
+  "kind": "ReplicationController",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "website-a-1-0-0",
+    "labels": {"name": "website-a", "version": "v1.0.0"}
+  },
+  "spec"  : {
+    "replicas": 2,
+    "selector": {"name": "website-a", "version": "v1.0.0"},
+    "template": {
+      "spec": {
+        "containers": [{
+          "name": "website-a-php",
+          "image": "venezia/website-a-php:v1",
+          "ports": [{"containerPort": 9001}, {"containerPort": 9000}],
+          "imagePullPolicy": "Always",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "128Mi"
+            }
+          }
+        }, {
+          "name": "website-a-apache",
+          "image": "venezia/website-a-apache:v1",
+          "livenessProbe": {
+            "enabled": true,
+            "type": "http",
+            "initialDelaySeconds": 20,
+            "timeoutSeconds": 2,
+            "httpGet": {
+              "path": "/watcher.html",
+              "port": 80
+            }
+          },
+          "ports": [{"containerPort": 80}, {"containerPort": 443}],
+          "imagePullPolicy": "Always",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "128Mi"
+            }
+          }
+        }]
+      },
+      "metadata": {
+        "labels": {
+          "name": "website-a",
+          "version": "v1.0.0"
+        }
+      }
+    }
+  }
+}

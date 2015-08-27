@@ -1,0 +1,23 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "website-a",
+    "labels": {
+      "name": "website-a",
+      "app": "website-a"
+    }
+  },
+  "spec": {
+    "ports": [{
+      "protocol": "TCP",
+      "port": 80,
+      "targetPort": 80,
+      "nodePort": 30001
+    }],
+    "type": "LoadBalancer",
+    "selector": {
+      "name": "website-a"
+    }
+  }
+}
