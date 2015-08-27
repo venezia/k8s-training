@@ -1,0 +1,20 @@
+#cloud-config
+
+coreos:
+  etcd2:
+    name: master
+    initial-cluster-token: k8s_etcd
+    initial-cluster: master=http://$private_ipv4:2380
+    advertise-client-urls: http://$private_ipv4:2379
+    listen-peer-urls: http://$private_ipv4:2380,http://localhost:2380
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    listen-client-urls: http://$private_ipv4:2379,http://localhost:2379
+
+  units:
+    - name: etcd2.service
+      command: start
+
+  update:
+    group: alpha
+    reboot-strategy: off
+
