@@ -2,17 +2,17 @@
   "kind": "ReplicationController",
   "apiVersion": "v1",
   "metadata": {
-    "name": "website-b-1-0-0",
-    "labels": {"name": "website-b", "version": "v1.0.0"}
+    "name": "website-b-2-0-0",
+    "labels": {"name": "website-b", "version": "v2.0.0"}
   },
   "spec"  : {
     "replicas": 2,
-    "selector": {"name": "website-b", "version": "v1.0.0"},
+    "selector": {"name": "website-b", "version": "v2.0.0"},
     "template": {
       "spec": {
         "containers": [{
           "name": "website-b-go",
-          "image": "quay.quacks.org/k8sdemo/website-b:v1",
+          "image": "quay.quacks.org/k8sdemo/website-b:v2",
           "ports": [{"containerPort": 3000}],
           "imagePullPolicy": "Always",
           "resources": {
@@ -29,7 +29,7 @@
       "metadata": {
         "labels": {
           "name": "website-b",
-          "version": "v1.0.0"
+          "version": "v2.0.0"
         }
       }
     }
