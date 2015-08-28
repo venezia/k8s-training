@@ -29,7 +29,7 @@ Please consult with your doctor before starting this course. Excessive usage may
 ### 4. Creating AWS Load Balancer
 
   0. Description of Service A and Service B
-  0. Creating Load Balancers for Service A and Service B
+  0. [Creating Load Balancers for services](/chapter-4/2.md)
   
 ### 5. Launch Application A
 
